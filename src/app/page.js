@@ -1,101 +1,156 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
+
+const tabs = [
+  { id: 'nursing', title: 'Nursing' },
+  { id: 'technology', title: 'Technology' },
+  { id: 'business', title: 'Business Analytics' },
+];
+
+function Modal({ isOpen, onClose, children }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+        {children}
+        <button
+          onClick={onClose}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors w-full"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [activeTab, setActiveTab] = useState('nursing');
+  const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
+  const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    // Show construction modal on initial load
+    setIsConstructionModalOpen(true);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-black text-white flex flex-col items-center">
+      <nav className="bg-black p-4 w-full text-right">
+        <button 
+          onClick={() => setIsBlogModalOpen(true)}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors animate-slow-pulse"
+        >
+          Blog
+        </button>
+      </nav>
+
+      <Hero />
+
+      <main className="p-4 max-w-3xl w-full">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
+          Jacob Pelletier
+        </h1>
+        <h2 className="mb-6 text-2xl white text-center italic animate-slow-pulse">
+          Endeavoring to learn, create, and grow.
+        </h2>
+        <p className="text-cyan-100 mb-6 text-2xl text-center">
+          I'm on a quest to collect all the data infinity stones: data collection, data storage, data processing, data analysis, data visualization, and data storytelling.
+        </p>
+        <div className="flex justify-center mb-6">
+          <img
+            src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2018/04/infinity-gauntlet-display.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5"
+            alt="Infinity Gauntlet"
+            className="w-48 h-48 rounded-full object-cover border-4 border-purple-600 shadow-lg"
+          />
+        </div>
+        <p className="text-cyan-300 mb-24" px-8>
+         Embarking on a journey to become a true data master, I'm delving into every facet of the data lifecycle. My expertise lies in crafting robust data platforms and APIs, leveraging languages like JavaScript and Python, alongside powerful tools such as Postgres. As I expand my skillset to encompass AI, I'm not only streamlining my development process but also exploring new horizons of innovation. Complementing my technical prowess with an MBA pursuit, I'm positioning myself to leverage data-driven insights for tackling complex business problems and uncovering new avenues for growth.       
+         </p>
+        <p className="text-cyan-100 text-xl mb-6">
+            <p className="text-center">
+              Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
+            </p>
+          </p>
+        <div className="flex justify-center mb-4 space-x-4">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-2 rounded transition-colors ${
+                activeTab === tab.id 
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
+                  : 'bg-gray-800 text-cyan-300 hover:bg-gray-700'
+              }`}
+            >
+              {tab.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-12">
+          {activeTab === 'nursing' && (
+            <div>
+              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
+                Nursing Experience
+              </h2>
+              <p className="text-cyan-300">
+                Registered Nurse with experience in critical care and emergency departments. Skilled in patient assessment, medication administration, and care coordination.
+              </p>
+            </div>
+          )}
+          {activeTab === 'technology' && (
+            <div>
+              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-pink-400 via-purple-500 to-cyan-500 text-transparent bg-clip-text text-center">
+                Technologies:
+              </h2>
+              <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                {['Python', 'JavaScript', 'React', 'Node.js', 'SQL', 'PostgreSQL', 'Supabase', 'Git', 'HTML/CSS', 'Tailwind CSS', 'MUI', 'Next.js', 'Anaconda', 'Docker', 'Pandas', 'NumPy', 'Jupyter', 'Microsoft Excel'].map((tech) => (
+                  <li key={tech} className="bg-gray-800 rounded-lg p-2 text-center text-cyan-300">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-pink-400 via-purple-500 to-cyan-500 text-transparent bg-clip-text text-center">
+                Education:
+              </h2>
+              <h3 className="text-xl font-semibold mb-2 text-cyan-300">
+                Education:
+              </h3>
+              <p>
+                Bachelor of Science in Nursing, University of California, San Francisco
+              </p>
+            </div>
+          )}
+          {activeTab === 'business' && (
+            <div>
+              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 text-transparent bg-clip-text text-center">
+                Business Analytics
+              </h2>
+              <p className="text-cyan-300">
+                Experienced in data analysis, visualization, and interpretation. Skilled in using tools like Excel, Tableau, and SQL for business intelligence and decision-making.
+              </p>
+            </div>
+          )}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <Modal isOpen={isBlogModalOpen} onClose={() => setIsBlogModalOpen(false)}>
+        <h2 className="text-2xl font-bold mb-4 text-cyan-300">Coming Soon</h2>
+        <p className="text-white">The blog feature is currently under development.</p>
+      </Modal>
+
+      <Modal isOpen={isConstructionModalOpen} onClose={() => setIsConstructionModalOpen(false)}>
+        <h2 className="text-2xl font-bold mb-4 text-cyan-300">Under Construction</h2>
+        <p className="text-white">
+          Welcome! This site is currently under construction. We're working hard to bring you an amazing experience. Please check back soon for updates.
+        </p>
+      </Modal>
     </div>
   );
 }
