@@ -72,10 +72,8 @@ export default function Home() {
         <p className="text-cyan-300 mb-24" px-8>
          Embarking on a journey to become a true data master, I'm delving into every facet of the data lifecycle. My expertise lies in crafting robust data platforms and APIs, leveraging languages like JavaScript and Python, alongside powerful tools such as Postgres. As I expand my skillset to encompass AI, I'm not only streamlining my development process but also exploring new horizons of innovation. Complementing my technical prowess with an MBA pursuit, I'm positioning myself to leverage data-driven insights for tackling complex business problems and uncovering new avenues for growth.       
          </p>
-        <p className="text-cyan-100 text-xl mb-6">
-            <p className="text-center">
+        <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
-            </p>
           </p>
         <div className="flex justify-center mb-4 space-x-4">
           {tabs.map((tab) => (
