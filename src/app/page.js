@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
 const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
@@ -33,11 +33,21 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
   const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
+  const mountRef = useRef(null); // Example ref
 
   useEffect(() => {
-    // Show construction modal on initial load
-    setIsConstructionModalOpen(true);
-  }, []);
+    const currentRef = mountRef.current; // Store ref in a local variable
+
+    // Any logic here that interacts with currentRef
+    // Example: If you're using Three.js or other libraries, initialize here
+
+    return () => {
+      if (currentRef) {
+        // Cleanup logic here (like removing event listeners or cleaning up instances)
+        console.log('Cleanup: Detaching from currentRef');
+      }
+    };
+  }, []); // Empty array means the effect runs only once (on mount and unmount)
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
