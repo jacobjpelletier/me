@@ -159,7 +159,7 @@ export default function Home() {
       <Modal isOpen={isConstructionModalOpen} onClose={() => setIsConstructionModalOpen(false)}>
         <h2 className="text-2xl font-bold mb-4 text-cyan-300">Under Construction</h2>
         <p className="text-white">
-          Welcome! This site is currently under construction. We're working hard to bring you an amazing experience. Please check back soon for updates.
+          Welcome! This site is currently under construction. We&apos;re working hard to bring you an amazing experience. Please check back soon for updates.
         </p>
       </Modal>
     </div>
