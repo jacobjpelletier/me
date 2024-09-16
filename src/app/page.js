@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image'; // Add this import
 
 const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
 
@@ -70,17 +71,19 @@ export default function Home() {
           Endeavoring to learn, create, and grow.
         </h2>
         <p className="text-cyan-100 mb-6 text-2xl text-center">
-          I'm on a quest to collect all the data infinity stones: data collection, data storage, data processing, data analysis, data visualization, and data storytelling.
+          I&apos;m on a quest to collect all the data infinity stones: data collection, data storage, data processing, data analysis, data visualization, and data storytelling.
         </p>
         <div className="flex justify-center mb-6">
-          <img
+          <Image
             src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2018/04/infinity-gauntlet-display.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5"
             alt="Infinity Gauntlet"
-            className="w-48 h-48 rounded-full object-cover border-4 border-purple-600 shadow-lg"
+            width={192}
+            height={192}
+            className="rounded-full object-cover border-4 border-purple-600 shadow-lg"
           />
         </div>
         <p className="text-cyan-300 mb-24" px-8>
-         Embarking on a journey to become a true data master, I'm delving into every facet of the data lifecycle. My expertise lies in crafting robust data platforms and APIs, leveraging languages like JavaScript and Python, alongside powerful tools such as Postgres. As I expand my skillset to encompass AI, I'm not only streamlining my development process but also exploring new horizons of innovation. Complementing my technical prowess with an MBA pursuit, I'm positioning myself to leverage data-driven insights for tackling complex business problems and uncovering new avenues for growth.       
+         Embarking on a journey to become a true data master, I&apos;m delving into every facet of the data lifecycle. My expertise lies in crafting robust data platforms and APIs, leveraging languages like JavaScript and Python, alongside powerful tools such as Postgres. As I expand my skillset to encompass AI, I&apos;m not only streamlining my development process but also exploring new horizons of innovation. Complementing my technical prowess with an MBA pursuit, I&apos;m positioning myself to leverage data-driven insights for tackling complex business problems and uncovering new avenues for growth.       
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
