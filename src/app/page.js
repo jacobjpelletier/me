@@ -64,7 +64,7 @@ export default function Home() {
           Endeavoring to learn, create, and grow.
         </h2>
         <p className="text-cyan-100 mb-24 text-2xl text-center">
-          I'm on a quest to collect all the data infinity stones.
+          I&apos;m on a quest to collect all the data infinity stones.
         </p>
 
         <div className="relative w-64 h-64 mx-auto mb-6">
@@ -140,7 +140,7 @@ export default function Home() {
         `}</style>
 
          <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
-          Student of the data's full lifecycle. From full-stack engineering to data science and analytics.
+          Student of the data&apos;s full lifecycle. From full-stack engineering to data science and analytics.
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
@@ -216,7 +216,7 @@ export default function Home() {
       <Modal isOpen={isConstructionModalOpen} onClose={() => setIsConstructionModalOpen(false)}>
         <h2 className="text-2xl font-bold mb-4 text-cyan-300">Under Construction</h2>
         <p className="text-white">
-          Welcome! This site is currently under construction. We're working hard to bring you an amazing experience. Please check back soon for updates.
+          Welcome! This site is currently under construction. We&apos;re working hard to bring you an amazing experience. Please check back soon for updates.
         </p>
       </Modal>
     </div>
