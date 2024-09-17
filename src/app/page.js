@@ -140,7 +140,7 @@ export default function Home() {
         `}</style>
 
          <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
-          Student of the data&apos;s full lifecycle. From full-stack engineering to data science and analytics.
+          Student of data&apos;s full lifecycle. From full-stack engineering to data science and analytics.
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
@@ -167,32 +167,101 @@ export default function Home() {
               <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
                 Nursing Experience
               </h2>
-              <p className="text-cyan-300">
-                Registered Nurse with experience in critical care and emergency departments. Skilled in patient assessment, medication administration, and care coordination.
-              </p>
+              <div className="space-y-6">
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Clinical Experience</h3>
+                  <p className="text-white">
+                    Over 10 years of diverse nursing experience across various healthcare settings, primarily as a Med/Surg/Tele float and travel nurse.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Leadership & Management</h3>
+                  <p className="text-white">
+                    Proven ability to work in high pressure environments. Served as a charge nurse and preceptor, demonstrating strong leadership skills in coordinating patient care, mentoring new staff, and facilitating interdisciplinary communication. Actively participated in quality improvement initiatives and policy development to enhance patient outcomes and operational efficiency.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education & Certifications</h3>
+                  <ul className="list-disc list-inside text-white">
+                    <li>Bachelor of Science in Nursing, University of Connecticut, Storrs, CT.</li>
+                    <li>Registered Nurse (RN) License</li>
+                    <li>Basic Life Support (BLS) Certification</li>
+                    <li>Advanced Cardiac Life Support (ACLS) Certification</li>
+                  </ul>
+                </section>
+              </div>
+
             </div>
           )}
           {activeTab === 'technology' && (
             <div>
-              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-pink-400 via-purple-500 to-cyan-500 text-transparent bg-clip-text text-center">
-                Technologies:
-              </h2>
-              <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                {['Python', 'JavaScript', 'React', 'Node.js', 'SQL', 'PostgreSQL', 'Supabase', 'Git', 'HTML/CSS', 'Tailwind CSS', 'MUI', 'Next.js', 'Anaconda', 'Docker', 'Pandas', 'NumPy', 'Jupyter', 'Microsoft Excel'].map((tech) => (
-                  <li key={tech} className="bg-gray-800 rounded-lg p-2 text-center text-cyan-300">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-pink-400 via-purple-500 to-cyan-500 text-transparent bg-clip-text text-center">
-                Education:
-              </h2>
-              <h3 className="text-xl font-semibold mb-2 text-cyan-300">
-                Education:
-              </h3>
-              <p>
-                Bachelor of Science in Nursing, University of California, San Francisco
-              </p>
+              <div className="space-y-6">
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Technologies</h3>
+                  <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                    {['Python', 'JavaScript', 'React', 'Node.js', 'SQL', 'PostgreSQL', 'Supabase', 'Git', 'HTML/CSS', 'Tailwind CSS', 'MUI', 'Next.js', 'Anaconda', 'Docker', 'Pandas', 'NumPy', 'Jupyter', 'Microsoft Excel'].map((tech) => (
+                      <li key={tech} className="bg-gray-900 rounded-lg p-2 text-center text-purple-300 hover:text-cyan-300">
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
+                  <p className="text-white">
+                    Bachelor of Science in Computer Science, Central Connecticut State University, New Britain, CT.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Certifications</h3>
+                  <p className="text-white">
+                    EPIC Systems Corporation - Cogito Certified
+                  </p>
+                  <p className="text-white">
+                    EPIC Systems Corporation - Caboodle Certified
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Favorite Projects:</h3>
+                  <ul className="space-y-6">
+                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Healthcare Payscale</h4>
+                      <p className="text-gray-300 mb-3">Data platform for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.</p>
+                      <p className="text-gray-300 mb-3"><i>Role: Full-stack engineer, product manager, and marketing.</i></p>
+                      <a href="https://healthcarepayscale.com" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
+                    </li>
+                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Safe Staffing CT</h4>
+                      <p className="text-gray-300 mb-3">Email platform that allows users to find and email their state representatives to advocate for legislation.</p>
+                      <p className="text-gray-300 mb-3"><i>Role: Full-stack engineer.</i></p>
+                      <a href="https://www.safestaffingct.com/" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
+                    </li>
+                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Compare Me To Dinos!</h4>
+                      <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project.</p>
+                      <p className="text-gray-300 mb-3"><i>Role: Front-end engineer.</i></p>
+                      <a href="https://htmlpreview.github.io/?https://github.com/jacobjpelletier/dino/blob/main/Javascript-master/index.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Visit Project</a>
+                    </li>
+                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Frogger Game.</h4>
+                      <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project.</p>
+                      <p className="text-gray-300 mb-3"><i>Role: Front-end engineer.</i></p>
+                      <a href="https://htmlpreview.github.io/?https://github.com/jacobjpelletier/frogger/blob/master/index.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Explore</a>
+                    </li>
+                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Data Analysis with Python.</h4>
+                      <p className="text-gray-300 mb-3">Udacity Intro to Programming Nanodegree Project.</p>
+                      <p className="text-gray-300 mb-3"><i>Role: Data Analyst.</i></p>
+                      <a href="https://rawcdn.githack.com/jacobjpelletier/dataanalysis/e09a7fc1a6e46a0dee772c812562ab8de0f38896/DataAnalysis.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Explore</a>
+                    </li>
+                  </ul>
+                </section>
+              </div>
             </div>
           )}
           {activeTab === 'business' && (
@@ -207,6 +276,15 @@ export default function Home() {
           )}
         </div>
       </main>
+      <footer className="text-white py-4 mt-20">
+        <div className="container mx-auto text-center">
+          <p>&copy; 2024 Jacob Pelletier. All rights reserved.</p>
+          <div className="mt-2">
+            <a href="#" className="text-cyan-300 hover:text-cyan-400 mx-2">LinkedIn</a>
+            <a href="#" className="text-cyan-300 hover:text-cyan-400 mx-2">GitHub</a>
+          </div>
+        </div>
+      </footer>
 
       <Modal isOpen={isBlogModalOpen} onClose={() => setIsBlogModalOpen(false)}>
         <h2 className="text-2xl font-bold mb-4 text-cyan-300">Coming Soon</h2>
