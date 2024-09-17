@@ -201,7 +201,7 @@ export default function Home() {
                 <section>
                   <h3 className="text-xl font-semibold mb-2 text-cyan-300">Technologies</h3>
                   <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                    {['Python', 'JavaScript', 'React', 'Node.js', 'SQL', 'PostgreSQL', 'Supabase', 'Git', 'HTML/CSS', 'Tailwind CSS', 'MUI', 'Next.js', 'Anaconda', 'Docker', 'Pandas', 'NumPy', 'Jupyter', 'Microsoft Excel'].map((tech) => (
+                    {['Python', 'JavaScript', 'TypeScript', 'React', 'Node.js', 'SQL', 'PostgreSQL', 'Supabase', 'Git', 'HTML/CSS', 'Tailwind CSS', 'MUI', 'Next.js', 'Anaconda', 'Docker', 'Pandas', 'NumPy', 'Jupyter'].map((tech) => (
                       <li key={tech} className="bg-gray-900 rounded-lg p-2 text-center text-purple-300 hover:text-cyan-300">
                         {tech}
                       </li>
