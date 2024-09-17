@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import Image from 'next/image'; // Add this import
+import Image from 'next/image';
 
 const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
 
@@ -11,6 +11,8 @@ const tabs = [
   { id: 'technology', title: 'Technology' },
   { id: 'business', title: 'Business Analytics' },
 ];
+
+const infinity_stones = ['collection', 'storage', 'processing', 'analysis', 'visualization', 'storytelling'];
 
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
@@ -34,31 +36,22 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
   const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
-  const mountRef = useRef(null); // Example ref
 
   useEffect(() => {
-    const currentRef = mountRef.current; // Store ref in a local variable
-
-    // Any logic here that interacts with currentRef
-    // Example: If you're using Three.js or other libraries, initialize here
-
-    return () => {
-      if (currentRef) {
-        // Cleanup logic here (like removing event listeners or cleaning up instances)
-        console.log('Cleanup: Detaching from currentRef');
-      }
-    };
-  }, []); // Empty array means the effect runs only once (on mount and unmount)
+    setIsConstructionModalOpen(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
       <nav className="bg-black p-4 w-full text-right">
-        <button 
-          onClick={() => setIsBlogModalOpen(true)}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors animate-slow-pulse"
+        <a 
+          href="https://dev.to/jacobjpelletier"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors inline-block"
         >
           Blog
-        </button>
+        </a>
       </nav>
 
       <Hero />
@@ -70,20 +63,84 @@ export default function Home() {
         <h2 className="mb-6 text-2xl white text-center italic animate-slow-pulse">
           Endeavoring to learn, create, and grow.
         </h2>
-        <p className="text-cyan-100 mb-6 text-2xl text-center">
-          I&apos;m on a quest to collect all the data infinity stones: data collection, data storage, data processing, data analysis, data visualization, and data storytelling.
+        <p className="text-cyan-100 mb-24 text-2xl text-center">
+          I'm on a quest to collect all the data infinity stones.
         </p>
-        <div className="flex justify-center mb-6">
-          <Image
-            src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2018/04/infinity-gauntlet-display.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5"
-            alt="Infinity Gauntlet"
-            width={192}
-            height={192}
-            className="rounded-full object-cover border-4 border-purple-600 shadow-lg"
-          />
+
+        <div className="relative w-64 h-64 mx-auto mb-6">
+          {/* Infinity Stones Floating Around */}
+          {infinity_stones.map((stone, index) => (
+            <div
+              key={stone}
+              className={`absolute stone-container`}
+              style={{
+                top: `${Math.sin((index / infinity_stones.length) * 2 * Math.PI) * 56 + 46}%`,
+                left: `${Math.cos((index / infinity_stones.length) * 2 * Math.PI) * 48 + 34}%`,
+                animationDelay: `${index * 0.5}s`,
+              }}
+            >
+              <div className="rounded-full p-2 shadow-lg transform hover:scale-110 transition-transform">
+                <span className="text-sm font-bold text-white">{stone}</span>
+              </div>
+            </div>
+          ))}
+
+          {/* Circle Image with Black Overlay */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full image-overlay" style={{ width: '50%', height: '50%' }}>
+            <Image
+              src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2018/04/infinity-gauntlet-display.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5"
+              alt="Infinity Gauntlet"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full border-4 border-purple-600 shadow-lg"
+            />
+          </div>
         </div>
-        <p className="text-cyan-300 mb-24" px-8>
-         Embarking on a journey to become a true data master, I&apos;m delving into every facet of the data lifecycle. My expertise lies in crafting robust data platforms and APIs, leveraging languages like JavaScript and Python, alongside powerful tools such as Postgres. As I expand my skillset to encompass AI, I&apos;m not only streamlining my development process but also exploring new horizons of innovation. Complementing my technical prowess with an MBA pursuit, I&apos;m positioning myself to leverage data-driven insights for tackling complex business problems and uncovering new avenues for growth.       
+
+        <style jsx>{`
+          .relative {
+            position: relative;
+          }
+
+          .image-overlay {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+          }
+
+          .image-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4); /* 40% black opacity */
+            border-radius: 50%;
+            z-index: 2;
+          }
+
+          .stone-container {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3; /* Keep stones above the image */
+            animation: float 5s ease-in-out infinite;
+          }
+
+          @keyframes float {
+            0% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+            100% {
+              transform: translateY(0);
+            }
+          }
+        `}</style>
+
+         <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
+          Student of the data's full lifecycle. From full-stack engineering to data science and analytics.
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
@@ -159,7 +216,7 @@ export default function Home() {
       <Modal isOpen={isConstructionModalOpen} onClose={() => setIsConstructionModalOpen(false)}>
         <h2 className="text-2xl font-bold mb-4 text-cyan-300">Under Construction</h2>
         <p className="text-white">
-          Welcome! This site is currently under construction. We&apos;re working hard to bring you an amazing experience. Please check back soon for updates.
+          Welcome! This site is currently under construction. We're working hard to bring you an amazing experience. Please check back soon for updates.
         </p>
       </Modal>
     </div>
