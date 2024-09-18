@@ -236,12 +236,6 @@ export default function Home() {
                       <a href="https://healthcarepayscale.com" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
                     </li>
                     <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Safe Staffing CT</h4>
-                      <p className="text-gray-300 mb-3">Email platform that allows users to find and email their state representatives to advocate for legislation.</p>
-                      <p className="text-gray-300 mb-3"><i>Role: Full-stack engineer.</i></p>
-                      <a href="https://www.safestaffingct.com/" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
-                    </li>
-                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
                       <h4 className="text-xl font-semibold mb-2 text-purple-400">Compare Me To Dinos!</h4>
                       <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project.</p>
                       <p className="text-gray-300 mb-3"><i>Role: Front-end engineer.</i></p>
