@@ -231,13 +231,13 @@ export default function Home() {
                   <ul className="space-y-6">
                     <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
                       <h4 className="text-xl font-semibold mb-2 text-purple-400">Healthcare Payscale</h4>
-                      <p className="text-gray-300 mb-3">Data platform for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.</p>
+                      <p className="text-gray-300 mb-3">SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.</p>
                       <p className="text-gray-300 mb-3"><i>Role: Full-stack engineer, product manager, and marketing.</i></p>
                       <a href="https://healthcarepayscale.com" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
                     </li>
                     <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
                       <h4 className="text-xl font-semibold mb-2 text-purple-400">Compare Me To Dinos!</h4>
-                      <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project.</p>
+                      <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project. Written in functional JavaScript.</p>
                       <p className="text-gray-300 mb-3"><i>Role: Front-end engineer.</i></p>
                       <a href="https://htmlpreview.github.io/?https://github.com/jacobjpelletier/dino/blob/main/Javascript-master/index.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Visit Project</a>
                     </li>
