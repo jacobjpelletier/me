@@ -12,7 +12,7 @@ const tabs = [
   { id: 'business', title: 'Business Analytics' },
 ];
 
-const infinity_stones = ['collection', 'storage', 'processing', 'analysis', 'visualization', 'storytelling'];
+const infinity_stones = ['Analytics', 'Architecture', 'Big Data', 'Cloud', 'Pen Testing', 'Security'];
 
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
@@ -64,7 +64,7 @@ export default function Home() {
           Endeavoring to learn, create, and grow.
         </h2>
         <p className="text-cyan-100 mb-24 text-2xl text-center">
-          I&apos;m on a quest to collect all the data infinity stones.
+          RIP Full Stack Web Development. I am on a new quest.
         </p>
 
         <div className="relative w-64 h-64 mx-auto mb-6">
@@ -138,9 +138,8 @@ export default function Home() {
             }
           }
         `}</style>
-
          <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
-          Student of data&apos;s full lifecycle. From full-stack engineering to data science and analytics.
+            I am taking this opportunity to pursue my interest in the intersection of data science and cybersecurity.
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
