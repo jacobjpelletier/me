@@ -14,28 +14,59 @@ const tabs = [
 
 const infinity_stones = ['Analytics', 'Architecture', 'Big Data', 'Cloud', 'Pen Testing', 'Security'];
 
-function Modal({ isOpen, onClose, children }) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
-        {children}
-        <button
-          onClick={onClose}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors w-full"
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
   const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const tags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Cybersecurity", "Postgres"];
+
+  const projects = [
+    {
+      name: 'Healthcare Payscale',
+      description: 'SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.',
+      role: 'Full-stack engineer, product manager, and marketing.',
+      link: 'https://healthcarepayscale.com',
+      tags: ['Javascript', 'Front-end', 'Back-end', 'Postgres'],
+    },
+    {
+      name: 'Compare Me To Dinos!',
+      description: 'Udacity Intermediate JavaScript Nanodegree Project. Written in functional JavaScript.',
+      role: 'Front-end engineer.',
+      link: 'https://htmlpreview.github.io/?https://github.com/jacobjpelletier/dino/blob/main/Javascript-master/index.html',
+      tags: ['Javascript', 'Front-end'],
+    },
+    {
+      name: 'Frogger Game',
+      description: 'Udacity Intermediate JavaScript Nanodegree Project.',
+      role: 'Front-end engineer.',
+      link: 'https://htmlpreview.github.io/?https://github.com/jacobjpelletier/frogger/blob/master/index.html',
+      tags: ['Javascript', 'Front-end'],
+    },
+    {
+      name: 'Data Analysis with Python',
+      description: 'Udacity Intro to Programming Nanodegree Project.',
+      role: 'Data Analyst.',
+      link: 'https://rawcdn.githack.com/jacobjpelletier/dataanalysis/e09a7fc1a6e46a0dee772c812562ab8de0f38896/DataAnalysis.html',
+      tags: ['Python', 'Data Analysis'],
+    },
+  ];
+
+  function handleTagClick(tag) {
+    setSelectedTags((prevSelectedTags) => {
+      if (prevSelectedTags.includes(tag)) {
+        return prevSelectedTags.filter((t) => t !== tag);
+      } else {
+        return [...prevSelectedTags, tag];
+      }
+    });
+  }
+
+  const filteredProjects = projects.filter((project) => {
+    if (selectedTags.length === 0) return true; // If no tags selected, show all
+    return selectedTags.every((tag) => project.tags.includes(tag));
+  });
 
   useEffect(() => {
     setIsConstructionModalOpen(true);
@@ -197,16 +228,6 @@ export default function Home() {
           {activeTab === 'technology' && (
             <div>
               <div className="space-y-6">
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Technologies</h3>
-                  <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                    {['Python', 'JavaScript', 'TypeScript', 'React', 'Node.js', 'SQL', 'PostgreSQL', 'Supabase', 'Git', 'HTML/CSS', 'Tailwind CSS', 'MUI', 'Next.js', 'Anaconda', 'Docker', 'Pandas', 'NumPy', 'Jupyter'].map((tech) => (
-                      <li key={tech} className="bg-gray-900 rounded-lg p-2 text-center text-purple-300 hover:text-cyan-300">
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
 
                 <section>
                   <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
@@ -227,31 +248,39 @@ export default function Home() {
 
                 <section>
                   <h3 className="text-xl font-semibold mb-2 text-cyan-300">Favorite Projects:</h3>
+
+                  {/* Tag buttons arranged in rows of max 4 tags */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mb-4">
+                    {tags.map((tag) => (
+                      <button
+                        key={tag}
+                        onClick={() => handleTagClick(tag)}
+                        className={`px-4 py-2 rounded transition-colors ${
+                          selectedTags.includes(tag)
+                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
+                            : 'bg-gray-800 text-cyan-300 hover:bg-gray-700'
+                        }`}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Filtered projects */}
                   <ul className="space-y-6">
-                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Healthcare Payscale</h4>
-                      <p className="text-gray-300 mb-3">SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.</p>
-                      <p className="text-gray-300 mb-3"><i>Role: Full-stack engineer, product manager, and marketing.</i></p>
-                      <a href="https://healthcarepayscale.com" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
-                    </li>
-                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Compare Me To Dinos!</h4>
-                      <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project. Written in functional JavaScript.</p>
-                      <p className="text-gray-300 mb-3"><i>Role: Front-end engineer.</i></p>
-                      <a href="https://htmlpreview.github.io/?https://github.com/jacobjpelletier/dino/blob/main/Javascript-master/index.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Visit Project</a>
-                    </li>
-                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Frogger Game.</h4>
-                      <p className="text-gray-300 mb-3">Udacity Intermediate JavaScript Nanodegree Project.</p>
-                      <p className="text-gray-300 mb-3"><i>Role: Front-end engineer.</i></p>
-                      <a href="https://htmlpreview.github.io/?https://github.com/jacobjpelletier/frogger/blob/master/index.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Explore</a>
-                    </li>
-                    <li className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                      <h4 className="text-xl font-semibold mb-2 text-purple-400">Data Analysis with Python.</h4>
-                      <p className="text-gray-300 mb-3">Udacity Intro to Programming Nanodegree Project.</p>
-                      <p className="text-gray-300 mb-3"><i>Role: Data Analyst.</i></p>
-                      <a href="https://rawcdn.githack.com/jacobjpelletier/dataanalysis/e09a7fc1a6e46a0dee772c812562ab8de0f38896/DataAnalysis.html" className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300">Explore</a>
-                    </li>
+                    {filteredProjects.map((project) => (
+                      <li key={project.name} className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h4 className="text-xl font-semibold mb-2 text-purple-400">{project.name}</h4>
+                        <p className="text-gray-300 mb-3">{project.description}</p>
+                        <p className="text-gray-300 mb-3"><i>Role: {project.role}</i></p>
+                        <a href={project.link} className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
+                        <div className="mt-2">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="inline-block bg-gray-700 text-cyan-300 text-sm px-2 py-1 rounded mr-2">{tag}</span>
+                          ))}
+                        </div>
+                      </li>
+                    ))}
                   </ul>
                 </section>
               </div>
@@ -290,6 +319,24 @@ export default function Home() {
           Welcome! This site is currently under construction. We&apos;re working hard to bring you an amazing experience. Please check back soon for updates.
         </p>
       </Modal>
+    </div>
+  );
+}
+
+function Modal({ isOpen, onClose, children }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+        {children}
+        <button
+          onClick={onClose}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors w-full"
+        >
+          Close
+        </button>
+      </div>
     </div>
   );
 }
