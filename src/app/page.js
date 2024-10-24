@@ -55,7 +55,7 @@ export default function Home() {
       name: 'Data Management and Business Process Modeling',
       description: 'A project which models a business need, creates a database in EC2 and DDL, populates database, and writes reports from database.',
       role: 'Data modeler, cloud set up, report writer',
-      link: 'https://github.com/jacobjpelletier/CreateADatabase',
+      link: 'https://github.com/jacobjpelletier/DatabaseManagement',
       tags: ['Cloud', 'Back-end', 'MariaDB'],
     },
   ];
