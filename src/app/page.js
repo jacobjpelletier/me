@@ -67,7 +67,7 @@ export default function Home() {
       name: 'Littefield Simulation',
       description: 'SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.',
       role: 'Full-stack engineer, product manager, and marketing.',
-      link: 'https://healthcarepayscale.com',
+      link: '',
       tags: ['Operations'],
     },
   ];
