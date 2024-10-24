@@ -12,7 +12,7 @@ const tabs = [
   { id: 'business', title: 'Business Analytics' },
 ];
 
-const infinity_stones = ['Analytics', 'Architecture', 'Big Data', 'Cloud', 'Pen Testing', 'Security'];
+const infinity_stones = ['Analytics', 'Architecture', 'Big Data', 'Cloud', 'Operations', 'Security'];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
@@ -20,9 +20,9 @@ export default function Home() {
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const tags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Cybersecurity", "Postgres"];
+  const techtags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Cybersecurity", "Postgres", "MariaDB", "Cloud"];
 
-  const projects = [
+  const techprojects = [
     {
       name: 'Healthcare Payscale',
       description: 'SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.',
@@ -51,6 +51,25 @@ export default function Home() {
       link: 'https://rawcdn.githack.com/jacobjpelletier/dataanalysis/e09a7fc1a6e46a0dee772c812562ab8de0f38896/DataAnalysis.html',
       tags: ['Python', 'Data Analysis'],
     },
+    {
+      name: 'Data Management and Business Process Modeling',
+      description: 'A project which models a business need, creates a database in EC2 and DDL, populates database, and writes reports from database.',
+      role: 'Data modeler, cloud set up, report writer',
+      link: 'https://github.com/jacobjpelletier/CreateADatabase',
+      tags: ['Cloud', 'Back-end', 'MariaDB'],
+    },
+  ];
+
+  const mbatags = ["Operations", "Finaince", ];
+
+  const mbaprojects = [
+    {
+      name: 'Littefield Simulation',
+      description: 'SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.',
+      role: 'Full-stack engineer, product manager, and marketing.',
+      link: 'https://healthcarepayscale.com',
+      tags: ['Operations'],
+    },
   ];
 
   function handleTagClick(tag) {
@@ -63,7 +82,12 @@ export default function Home() {
     });
   }
 
-  const filteredProjects = projects.filter((project) => {
+  const filteredTechProjects = techprojects.filter((project) => {
+    if (selectedTags.length === 0) return true; // If no tags selected, show all
+    return selectedTags.every((tag) => project.tags.includes(tag));
+  });
+
+  const filteredMbaProjects = mbaprojects.filter((project) => {
     if (selectedTags.length === 0) return true; // If no tags selected, show all
     return selectedTags.every((tag) => project.tags.includes(tag));
   });
@@ -71,6 +95,12 @@ export default function Home() {
   useEffect(() => {
     setIsConstructionModalOpen(true);
   }, []);
+
+  // Modify the tab change handler
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setSelectedTags([]); // Reset selected tags when changing tabs
+  };
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
@@ -179,7 +209,7 @@ export default function Home() {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)} // Use the new handler
               className={`px-4 py-2 rounded transition-colors ${
                 activeTab === tab.id 
                   ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
@@ -199,6 +229,20 @@ export default function Home() {
               </h2>
               <div className="space-y-6">
                 <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
+                  <ul className="list-disc list-inside text-white">
+                    <li>Bachelor of Science in Nursing, University of Connecticut, Storrs, CT.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Certifications</h3>
+                  <ul className="list-disc list-inside text-white">
+                    <li>Registered Nurse (RN) License</li>
+                    <li>Basic Life Support (BLS) Certification</li>
+                    <li>Advanced Cardiac Life Support (ACLS) Certification</li>
+                  </ul>
+                </section>
+                <section>
                   <h3 className="text-xl font-semibold mb-2 text-cyan-300">Clinical Experience</h3>
                   <p className="text-white">
                     Over 10 years of diverse nursing experience across various healthcare settings, primarily as a Med/Surg/Tele float and travel nurse.
@@ -210,16 +254,6 @@ export default function Home() {
                   <p className="text-white">
                     Proven ability to work in high pressure environments. Served as a charge nurse and preceptor, demonstrating strong leadership skills in coordinating patient care, mentoring new staff, and facilitating interdisciplinary communication. Actively participated in quality improvement initiatives and policy development to enhance patient outcomes and operational efficiency.
                   </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education & Certifications</h3>
-                  <ul className="list-disc list-inside text-white">
-                    <li>Bachelor of Science in Nursing, University of Connecticut, Storrs, CT.</li>
-                    <li>Registered Nurse (RN) License</li>
-                    <li>Basic Life Support (BLS) Certification</li>
-                    <li>Advanced Cardiac Life Support (ACLS) Certification</li>
-                  </ul>
                 </section>
               </div>
 
@@ -251,7 +285,7 @@ export default function Home() {
 
                   {/* Tag buttons arranged in rows of max 4 tags */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mb-4">
-                    {tags.map((tag) => (
+                    {techtags.map((tag) => (
                       <button
                         key={tag}
                         onClick={() => handleTagClick(tag)}
@@ -268,7 +302,7 @@ export default function Home() {
 
                   {/* Filtered projects */}
                   <ul className="space-y-6">
-                    {filteredProjects.map((project) => (
+                    {filteredTechProjects.map((project) => (
                       <li key={project.name} className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
                         <h4 className="text-xl font-semibold mb-2 text-purple-400">{project.name}</h4>
                         <p className="text-gray-300 mb-3">{project.description}</p>
@@ -288,12 +322,60 @@ export default function Home() {
           )}
           {activeTab === 'business' && (
             <div>
-              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 text-transparent bg-clip-text text-center">
-                Business Analytics
-              </h2>
-              <p className="text-cyan-300">
-                Experienced in data analysis, visualization, and interpretation. Skilled in using tools like Excel, Tableau, and SQL for business intelligence and decision-making.
-              </p>
+              <div className="space-y-6">
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
+                  <p className="text-white">
+                    Masters of Business Administration, The University of Connecticut, Stamford, CT.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Certifications</h3>
+                  <p className="text-white">
+                    
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Favorite Projects:</h3>
+
+                  {/* Tag buttons arranged in rows of max 4 tags */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mb-4">
+                    {mbatags.map((tag) => (
+                      <button
+                        key={tag}
+                        onClick={() => handleTagClick(tag)}
+                        className={`px-4 py-2 rounded transition-colors ${
+                          selectedTags.includes(tag)
+                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
+                            : 'bg-gray-800 text-cyan-300 hover:bg-gray-700'
+                        }`}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Filtered projects */}
+                  <ul className="space-y-6">
+                    {filteredMbaProjects.map((project) => (
+                      <li key={project.name} className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h4 className="text-xl font-semibold mb-2 text-purple-400">{project.name}</h4>
+                        <p className="text-gray-300 mb-3">{project.description}</p>
+                        <p className="text-gray-300 mb-3"><i>Role: {project.role}</i></p>
+                        <a href={project.link} className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
+                        <div className="mt-2">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="inline-block bg-gray-700 text-cyan-300 text-sm px-2 py-1 rounded mr-2">{tag}</span>
+                          ))}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </div>
             </div>
           )}
         </div>
