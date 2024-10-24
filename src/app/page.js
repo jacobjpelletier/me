@@ -60,7 +60,7 @@ export default function Home() {
     },
   ];
 
-  const mbatags = ["Operations", "Finaince", ];
+  const mbatags = ["Operations", "Finance", ];
 
   const mbaprojects = [
     {
