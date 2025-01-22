@@ -12,7 +12,7 @@ const tabs = [
   { id: 'business', title: 'Business Analytics' },
 ];
 
-const infinity_stones = ['Analytics', 'Architecture', 'Big Data', 'Cloud', 'Operations', 'Security'];
+const infinity_stones = ['Analytics', 'Web Dev', 'Data & ML', 'Cloud', 'Operations', 'Security'];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
@@ -20,7 +20,7 @@ export default function Home() {
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const techtags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Cybersecurity", "Postgres", "MariaDB", "Cloud"];
+  const techtags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Postgres", "MariaDB", "Cloud"];
 
   const techprojects = [
     {
@@ -28,7 +28,7 @@ export default function Home() {
       description: 'SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.',
       role: 'Full-stack engineer, product manager, and marketing.',
       link: 'https://healthcarepayscale.com',
-      tags: ['Javascript', 'Front-end', 'Back-end', 'Postgres'],
+      tags: ['Javascript', 'Front-end', 'Back-end', 'Postgres', 'Cloud', 'Data Analysis'],
     },
     {
       name: 'Compare Me To Dinos!',
@@ -64,10 +64,17 @@ export default function Home() {
 
   const mbaprojects = [
     {
-      name: 'Littefield Simulation',
-      description: 'SaaS data dashboard for healthcare professionals to compare salaries and make informed career decisions. Built in Next.js, Supabase, and Stripe for monetization.',
-      role: 'Full-stack engineer, product manager, and marketing.',
-      link: '',
+      name: 'Littlefield Simulation',
+      description: "The simulation involves managing a digital satellite system (DSS) receiver assembly line over a simulated period of 316 days. The final score is based on the **cash balance** at the factory's shutdown.",
+      role: 'Team Lead, Math modeler, and Data analyst',
+      link: 'https://github.com/jacobjpelletier/Littlefield',
+      tags: ['Operations'],
+    },
+    {
+      name: 'LLBean Case Study',
+      description: "This repository contains an analysis of L.L. Bean's **item forecasting and inventory management** challenges, as explored in the Harvard Business School case study. The study investigates the difficulties of matching supply to demand, the implications of forecasting errors, and recommendations for improving inventory decisions.",
+      role: 'Math modeler, and Data analyst',
+      link: 'https://github.com/jacobjpelletier/LLBean',
       tags: ['Operations'],
     },
   ];
@@ -200,7 +207,7 @@ export default function Home() {
           }
         `}</style>
          <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
-            I am taking this opportunity to pursue my interest in the intersection of data science and cybersecurity.
+            I am taking this opportunity to pursue my interest in the intersection of data science and operations.
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
