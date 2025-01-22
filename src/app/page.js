@@ -132,7 +132,7 @@ export default function Home() {
           Endeavoring to learn, create, and grow.
         </h2>
         <p className="text-cyan-100 mb-24 text-2xl text-center">
-          RIP Full Stack Web Development. I am on a new quest.
+          I am on a quest to collect all the infinity stones of LEAN, data-driven operations.
         </p>
 
         <div className="relative w-64 h-64 mx-auto mb-6">
