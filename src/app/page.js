@@ -131,9 +131,6 @@ export default function Home() {
         <h2 className="mb-6 text-2xl white text-center italic animate-slow-pulse">
           Endeavoring to learn, create, and grow.
         </h2>
-        <p className="text-cyan-100 mb-24 text-2xl text-center">
-          I am on a quest to collect all the infinity stones of LEAN, data-driven operations.
-        </p>
 
         <div className="relative w-64 h-64 mx-auto mb-6">
           {/* Infinity Stones Floating Around */}
@@ -207,7 +204,7 @@ export default function Home() {
           }
         `}</style>
          <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
-            I am taking this opportunity to pursue my interest in the intersection of data science and operations.
+            I am on a quest to explore and master the intersection of data science and operations.
          </p>
         <p className="text-cyan-100 text-center text-xl mb-6">
               Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
