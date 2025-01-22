@@ -128,7 +128,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
           Jacob Pelletier
         </h1>
-        <h2 className="mb-6 text-2xl white text-center italic animate-slow-pulse">
+        <h2 className="mb-20 text-2xl white text-center italic animate-slow-pulse">
           Endeavoring to learn, create, and grow.
         </h2>
 
