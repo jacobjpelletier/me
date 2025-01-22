@@ -13,8 +13,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Jacob Pelletier Web Resume",
-  description: "Jacob Pelletier Web Resume",
+  title: "Jacob Pelletier",
+  description: "Web Resume",
 };
 
 export default function RootLayout({ children }) {
