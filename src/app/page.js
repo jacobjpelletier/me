@@ -12,7 +12,7 @@ const tabs = [
   { id: 'business', title: 'Business Analytics' },
 ];
 
-const infinity_stones = ['Analytics', 'Web Dev', 'Data & ML', 'Cloud', 'Operations', 'AI & ML'];
+const infinity_stones = ['Analytics', 'Web Dev', 'Data & ML', 'Cloud', 'Operations', 'Generative AI'];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
