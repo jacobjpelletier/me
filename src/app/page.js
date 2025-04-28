@@ -12,7 +12,7 @@ const tabs = [
   { id: 'business', title: 'Business Analytics' },
 ];
 
-const infinity_stones = ['Analytics', 'Web Dev', 'Data & ML', 'Cloud', 'Operations', 'Security'];
+const infinity_stones = ['Analytics', 'Web Dev', 'Data & ML', 'Cloud', 'Operations', 'AI'];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
@@ -20,7 +20,7 @@ export default function Home() {
   const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const techtags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Postgres", "MariaDB", "Cloud"];
+  const techtags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Postgres", "MariaDB", "Cloud", "AI"];
 
   const techprojects = [
     {
