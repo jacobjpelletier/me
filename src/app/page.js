@@ -12,7 +12,7 @@ const tabs = [
   { id: 'business', title: 'Business Analytics' },
 ];
 
-const infinity_stones = ['Analytics', 'Full Stack', 'AI & ML', 'Cloud', 'Operations', 'Data Science'];
+const infinity_stones = ['Analytics', 'Full Stack', 'AI & ML', 'Healthcare', 'Operations', 'Data Science'];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
@@ -229,7 +229,7 @@ export default function Home() {
           {activeTab === 'nursing' && (
             <div>
               <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
-                Nursing Experience
+                Nursing & Healthcare Experience
               </h2>
               <div className="space-y-6">
                 <section>
@@ -249,15 +249,19 @@ export default function Home() {
                 <section>
                   <h3 className="text-xl font-semibold mb-2 text-cyan-300">Clinical Experience</h3>
                   <p className="text-white">
-                    Over 10 years of diverse nursing experience across various healthcare settings, primarily as a Med/Surg/Tele float and travel nurse.
+                    Over 10 years of diverse nursing experience across various healthcare settings, primarily as a Med/Surg/Tele and Outpatient.
+                  </p>
+                  <p className="text-white">
+                    Proven ability to work in high pressure environments. Served as a charge nurse and preceptor, demonstrating strong leadership skills in coordinating patient care, mentoring new staff, and facilitating interdisciplinary communication. Actively participated in quality improvement initiatives and policy development to enhance patient outcomes and operational efficiency.
                   </p>
                 </section>
 
                 <section>
                   <h3 className="text-xl font-semibold mb-2 text-cyan-300">Leadership & Management</h3>
                   <p className="text-white">
-                    Proven ability to work in high pressure environments. Served as a charge nurse and preceptor, demonstrating strong leadership skills in coordinating patient care, mentoring new staff, and facilitating interdisciplinary communication. Actively participated in quality improvement initiatives and policy development to enhance patient outcomes and operational efficiency.
+                    Assistant Nurse Manager at a busy Internal Medicine clinic.
                   </p>
+                  
                 </section>
               </div>
 
