@@ -226,7 +226,7 @@ export default function Home() {
         </div>
 
         <div className="mt-12">
-          {activeTab === 'nursing' && (
+          {activeTab === 'Healthcare' && (
             <div>
               <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
                 Nursing & Healthcare Experience
@@ -261,7 +261,23 @@ export default function Home() {
                   <p className="text-white">
                     Assistant Nurse Manager at a busy Internal Medicine clinic.
                   </p>
-                  
+                  <div className="mt-4">
+                    <h4 className="text-lg font-medium mb-2 text-purple-400">Key Projects</h4>
+                    <ul className="space-y-3">
+                      <li className="bg-gray-800/50 rounded p-3">
+                        <span className="block text-cyan-200 font-medium">Staff Development Program</span>
+                        <span className="text-gray-300"></span>
+                      </li>
+                      <li className="bg-gray-800/50 rounded p-3">
+                        <span className="block text-cyan-200 font-medium">Quality Metrics Dashboard</span>
+                        <span className="text-gray-300"></span>
+                      </li>
+                      <li className="bg-gray-800/50 rounded p-3">
+                        <span className="block text-cyan-200 font-medium">Patient Flow Optimization</span>
+                        <span className="text-gray-300"></span>
+                      </li>
+                    </ul>
+                  </div>
                 </section>
               </div>
 
