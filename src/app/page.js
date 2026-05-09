@@ -7,17 +7,16 @@ import Image from 'next/image';
 const Hero = dynamic(() => import('../components/Hero'), { ssr: false });
 
 const tabs = [
-  { id: 'nursing', title: 'Nursing' },
-  { id: 'technology', title: 'Technology' },
-  { id: 'business', title: 'Business Analytics' },
+  { id: 'nursing', title: 'Clinical Practice' },
+  { id: 'technology', title: 'Technical Architecture' },
+  { id: 'business', title: 'Operational Analytics' },
 ];
 
-const infinity_stones = ['Analytics', 'Full Stack', 'AI & ML', 'Healthcare', 'Operations', 'Data Science'];
+const infinity_stones = ['Analyst', 'Database', 'General AI', 'Clinician', 'Operations', 'Engineering'];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('nursing');
-  const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
-  const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(true);
+  const [isConstructionModalOpen, setIsConstructionModalOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
 
   const techtags = ["Python", "Javascript", "Front-end", "Back-end", "Data Analysis", "Postgres", "MariaDB", "Cloud", "AI"];
@@ -60,19 +59,19 @@ export default function Home() {
     },
   ];
 
-  const mbatags = ["Operations", "Finance", ];
+  const mbatags = ["Operations", "Finance"];
 
   const mbaprojects = [
     {
       name: 'Littlefield Simulation',
-      description: "The simulation involves managing a digital satellite system (DSS) receiver assembly line over a simulated period of 316 days. The final score is based on the **cash balance** at the factory's shutdown.",
+      description: "Managing a digital satellite system receiver assembly line. Optimized cash balance through mathematical modeling and resource allocation.",
       role: 'Team Lead, Math modeler, and Data analyst',
       link: 'https://github.com/jacobjpelletier/Littlefield',
       tags: ['Operations'],
     },
     {
       name: 'LLBean Case Study',
-      description: "This repository contains an analysis of L.L. Bean's **item forecasting and inventory management** challenges, as explored in the Harvard Business School case study. The study investigates the difficulties of matching supply to demand, the implications of forecasting errors, and recommendations for improving inventory decisions.",
+      description: "Analysis of item forecasting and inventory management challenges using Harvard Business School frameworks.",
       role: 'Math modeler, and Data analyst',
       link: 'https://github.com/jacobjpelletier/LLBean',
       tags: ['Operations'],
@@ -80,144 +79,122 @@ export default function Home() {
   ];
 
   function handleTagClick(tag) {
-    setSelectedTags((prevSelectedTags) => {
-      if (prevSelectedTags.includes(tag)) {
-        return prevSelectedTags.filter((t) => t !== tag);
-      } else {
-        return [...prevSelectedTags, tag];
-      }
-    });
+    setSelectedTags((prev) => 
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
   }
 
-  const filteredTechProjects = techprojects.filter((project) => {
-    if (selectedTags.length === 0) return true; // If no tags selected, show all
-    return selectedTags.every((tag) => project.tags.includes(tag));
-  });
+  const filteredTechProjects = techprojects.filter((p) => 
+    selectedTags.length === 0 || selectedTags.every((t) => p.tags.includes(t))
+  );
 
-  const filteredMbaProjects = mbaprojects.filter((project) => {
-    if (selectedTags.length === 0) return true; // If no tags selected, show all
-    return selectedTags.every((tag) => project.tags.includes(tag));
-  });
+  const filteredMbaProjects = mbaprojects.filter((p) => 
+    selectedTags.length === 0 || selectedTags.every((t) => p.tags.includes(t))
+  );
 
   useEffect(() => {
     setIsConstructionModalOpen(true);
   }, []);
 
-  // Modify the tab change handler
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
-    setSelectedTags([]); // Reset selected tags when changing tabs
+    setSelectedTags([]);
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center">
-      <nav className="bg-black p-4 w-full text-right">
+    <div className="min-h-screen bg-black text-white selection:bg-cyan-500/30">
+      {/* Navigation */}
+      <nav className="p-6 flex justify-end items-center max-w-7xl mx-auto">
         <a 
           href="https://dev.to/jacobjpelletier"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors inline-block"
+          className="px-5 py-2 rounded-full border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 transition-all text-sm font-medium"
         >
           Blog
         </a>
       </nav>
 
-      <Hero />
+      <main className="max-w-5xl mx-auto px-6 pb-20">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-4 
+                         bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 
+                         text-transparent bg-clip-text drop-shadow-sm">
+            Jacob Pelletier
+          </h1>
+          <h2 className="text-xl text-slate-400 font-light tracking-[0.2em] uppercase">
+            Clinician // Data Analyst // Strategist
+          </h2>
+        </div>
 
-      <main className="p-4 max-w-3xl w-full">
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
-          Jacob Pelletier
-        </h1>
-        <h2 className="mb-20 text-2xl white text-center italic animate-slow-pulse">
-          Endeavoring to learn, create, and grow.
-        </h2>
-
-        <div className="relative w-64 h-64 mx-auto mb-6">
-          {/* Infinity Stones Floating Around */}
+        {/* Hero Orbital Visual */}
+        <div className="relative w-80 h-80 mx-auto mb-20">
+          <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.2" className="text-cyan-400" />
+          </svg>
+          
           {infinity_stones.map((stone, index) => (
             <div
               key={stone}
-              className={`absolute stone-container`}
+              className="absolute z-20 group cursor-default"
               style={{
-                top: `${Math.sin((index / infinity_stones.length) * 2 * Math.PI) * 56 + 46}%`,
-                left: `${Math.cos((index / infinity_stones.length) * 2 * Math.PI) * 48 + 34}%`,
-                animationDelay: `${index * 0.5}s`,
+                top: `${50 + 55 * Math.sin((index / infinity_stones.length) * 2 * Math.PI)}%`,
+                left: `${50 + 55 * Math.cos((index / infinity_stones.length) * 2 * Math.PI)}%`,
+                transform: 'translate(-50%, -50%)',
               }}
             >
-              <div className="rounded-full p-2 shadow-lg transform hover:scale-110 transition-transform">
-                <span className="text-sm font-bold text-white">{stone}</span>
+              {/* Subtle connector line toward the center */}
+              <div className="absolute top-1/2 left-1/2 w-8 h-[1px] bg-cyan-500/20 origin-left -translate-x-full" 
+                  style={{ transform: `rotate(${index * 60}deg) translateX(-100%)` }} />
+              
+              <div className="text-[14px] font-mono font-bold tracking-[0.3em] uppercase text-slate-400 group-hover:text-cyan-400 transition-colors">
+                {stone}
               </div>
             </div>
           ))}
 
-          {/* Circle Image with Black Overlay */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full image-overlay" style={{ width: '50%', height: '50%' }}>
-            <Image
-              src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2018/04/infinity-gauntlet-display.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5"
-              alt="Infinity Gauntlet"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-full border-4 border-purple-600 shadow-lg"
-            />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40">
+            <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-slate-800 shadow-2xl">
+              <Image
+                src="/assets/media/network.jpg"
+                alt="Systems Convergence"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-60"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
+            </div>
           </div>
         </div>
 
-        <style jsx>{`
-          .relative {
-            position: relative;
-          }
+        {/* Thesis Statement */}
+        <div className="max-w-4xl mx-auto mb-20 p-[1px] bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent">
+          <div className="bg-black/40 backdrop-blur-sm py-12 px-6">
+            <p className="text-xl md:text-2xl text-center leading-relaxed font-light text-slate-300">
+              Exploring the <span className="text-cyan-400 font-medium">convergence</span> of data, technology, and clinical operations.
+            </p>
+          </div>
+        </div>
 
-          .image-overlay {
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-          }
+        {/* Professional Timeline Summary */}
+        <div className="flex flex-col md:flex-row justify-center gap-8 mb-16 text-sm text-slate-500 uppercase tracking-widest">
+            <span>RN Since 2013</span>
+            <span className="hidden md:block opacity-30">|</span>
+            <span>CS Since 2018</span>
+            <span className="hidden md:block opacity-30">|</span>
+            <span>MBA Candidate</span>
+        </div>
 
-          .image-overlay::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.4); /* 40% black opacity */
-            border-radius: 50%;
-            z-index: 2;
-          }
-
-          .stone-container {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 3; /* Keep stones above the image */
-            animation: float 5s ease-in-out infinite;
-          }
-
-          @keyframes float {
-            0% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(-10px);
-            }
-            100% {
-              transform: translateY(0);
-            }
-          }
-        `}</style>
-         <p className="text-cyan-300 text-2xl mt-12 text-center mb-12 p-20">
-            I am on a quest to explore and master the intersection of data science and operations.
-         </p>
-        <p className="text-cyan-100 text-center text-xl mb-6">
-              Nurse since 2013. Tech enthusiast since 2018. MBA student since 2024.
-          </p>
-        <div className="flex justify-center mb-4 space-x-4">
+        {/* Tab Navigation */}
+        <div className="flex justify-center mb-12 p-1 bg-slate-900/50 rounded-full border border-slate-800 backdrop-blur-sm max-w-fit mx-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => handleTabChange(tab.id)} // Use the new handler
-              className={`px-4 py-2 rounded transition-colors ${
+              onClick={() => handleTabChange(tab.id)}
+              className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                 activeTab === tab.id 
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
-                  : 'bg-gray-800 text-cyan-300 hover:bg-gray-700'
+                  ? 'bg-gradient-to-r from-cyan-600 to-blue-700 text-white shadow-lg shadow-cyan-900/20' 
+                  : 'text-slate-500 hover:text-cyan-400'
               }`}
             >
               {tab.title}
@@ -225,205 +202,114 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-12">
-          {activeTab === 'Healthcare' && (
-            <div>
-              <h2 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-transparent bg-clip-text text-center">
-                Nursing & Healthcare Experience
-              </h2>
-              <div className="space-y-6">
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
-                  <ul className="list-disc list-inside text-white">
-                    <li>Bachelor of Science in Nursing, University of Connecticut, Storrs, CT.</li>
-                  </ul>
-                </section>
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Certifications</h3>
-                  <ul className="list-disc list-inside text-white">
-                    <li>Registered Nurse (RN) License</li>
-                    <li>Basic Life Support (BLS) Certification</li>
-                    <li>Advanced Cardiac Life Support (ACLS) Certification</li>
-                  </ul>
-                </section>
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Clinical Experience</h3>
-                  <p className="text-white">
-                    Over 10 years of diverse nursing experience across various healthcare settings, primarily as a Med/Surg/Tele and Outpatient.
-                  </p>
-                  <p className="text-white">
-                    Proven ability to work in high pressure environments. Served as a charge nurse and preceptor, demonstrating strong leadership skills in coordinating patient care, mentoring new staff, and facilitating interdisciplinary communication. Actively participated in quality improvement initiatives and policy development to enhance patient outcomes and operational efficiency.
-                  </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Leadership & Management</h3>
-                  <p className="text-white">
-                    Assistant Nurse Manager at a busy Internal Medicine clinic.
-                  </p>
-                  <div className="mt-4">
-                    <h4 className="text-lg font-medium mb-2 text-purple-400">Key Projects</h4>
-                    <ul className="space-y-3">
-                      <li className="bg-gray-800/50 rounded p-3">
-                        <span className="block text-cyan-200 font-medium">Staff Development Program</span>
-                        <span className="text-gray-300"></span>
-                      </li>
-                      <li className="bg-gray-800/50 rounded p-3">
-                        <span className="block text-cyan-200 font-medium">Quality Metrics Dashboard</span>
-                        <span className="text-gray-300"></span>
-                      </li>
-                      <li className="bg-gray-800/50 rounded p-3">
-                        <span className="block text-cyan-200 font-medium">Patient Flow Optimization</span>
-                        <span className="text-gray-300"></span>
-                      </li>
+        {/* Tab Content */}
+        <div className="min-h-[400px]">
+          {activeTab === 'nursing' && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="md:col-span-1 space-y-8">
+                  <section>
+                    <h3 className="text-xs font-bold text-cyan-500 uppercase tracking-widest mb-4">Credentials</h3>
+                    <ul className="space-y-2 text-slate-300 text-sm">
+                      <li>BS in Nursing, UConn</li>
+                      <li>Registered Nurse (RN)</li>
+                      <li>ACLS / BLS Certified</li>
                     </ul>
-                  </div>
-                </section>
+                  </section>
+                </div>
+                <div className="md:col-span-2 space-y-8">
+                  <section>
+                    <h3 className="text-xs font-bold text-cyan-500 uppercase tracking-widest mb-4">Focus</h3>
+                    <p className="text-slate-300 leading-relaxed">
+                      13 years of clinical experience, currently leveraging informatics at UConn Health to streamline high-acuity patient care and interdisciplinary workflows.
+                    </p>
+                  </section>
+                </div>
               </div>
-
             </div>
           )}
+
           {activeTab === 'technology' && (
-            <div>
-              <div className="space-y-6">
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
-                  <p className="text-white">
-                    Bachelor of Science in Computer Science, Central Connecticut State University, New Britain, CT.
-                  </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Certifications</h3>
-                  <p className="text-white">
-                    EPIC Systems Corporation - Cogito Certified
-                  </p>
-                  <p className="text-white">
-                    EPIC Systems Corporation - Caboodle Certified
-                  </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Favorite Projects:</h3>
-
-                  {/* Tag buttons arranged in rows of max 4 tags */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mb-4">
-                    {techtags.map((tag) => (
-                      <button
-                        key={tag}
-                        onClick={() => handleTagClick(tag)}
-                        className={`px-4 py-2 rounded transition-colors ${
-                          selectedTags.includes(tag)
-                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
-                            : 'bg-gray-800 text-cyan-300 hover:bg-gray-700'
-                        }`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Filtered projects */}
-                  <ul className="space-y-6">
-                    {filteredTechProjects.map((project) => (
-                      <li key={project.name} className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                        <h4 className="text-xl font-semibold mb-2 text-purple-400">{project.name}</h4>
-                        <p className="text-gray-300 mb-3">{project.description}</p>
-                        <p className="text-gray-300 mb-3"><i>Role: {project.role}</i></p>
-                        <a href={project.link} className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
-                        <div className="mt-2">
-                          {project.tags.map((tag) => (
-                            <span key={tag} className="inline-block bg-gray-700 text-cyan-300 text-sm px-2 py-1 rounded mr-2">{tag}</span>
-                          ))}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+               <div className="flex flex-wrap gap-2 justify-center mb-10">
+                {techtags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => handleTagClick(tag)}
+                    className={`px-3 py-1 rounded text-[12px] font-bold uppercase tracking-tighter transition-all ${
+                      selectedTags.includes(tag)
+                        ? 'bg-cyan-500 text-black' 
+                        : 'bg-slate-900 text-slate-500 border border-slate-800 hover:border-cyan-500/50'
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
               </div>
+
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {filteredTechProjects.map((project) => (
+                  <li key={project.name} className="group bg-slate-900/50 border border-slate-800 p-6 rounded-xl hover:border-cyan-500/30 transition-all">
+                    <div className="flex justify-between mb-4">
+                      <h4 className="font-bold text-white group-hover:text-cyan-400 transition-colors">{project.name}</h4>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-white">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                      </a>
+                    </div>
+                    <p className="text-xs text-slate-400 mb-4 h-12 overflow-hidden">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map(t => (
+                        <span key={t} className="text-[9px] font-bold text-cyan-500/60 uppercase">{t}</span>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
+
           {activeTab === 'business' && (
-            <div>
-              <div className="space-y-6">
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Education</h3>
-                  <p className="text-white">
-                    Masters of Business Administration, The University of Connecticut, Stamford, CT.
-                  </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Certifications</h3>
-                  <p className="text-white">
-                    
-                  </p>
-                </section>
-
-                <section>
-                  <h3 className="text-xl font-semibold mb-2 text-cyan-300">Favorite Projects:</h3>
-
-                  {/* Tag buttons arranged in rows of max 4 tags */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mb-4">
-                    {mbatags.map((tag) => (
-                      <button
-                        key={tag}
-                        onClick={() => handleTagClick(tag)}
-                        className={`px-4 py-2 rounded transition-colors ${
-                          selectedTags.includes(tag)
-                            ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
-                            : 'bg-gray-800 text-cyan-300 hover:bg-gray-700'
-                        }`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Filtered projects */}
-                  <ul className="space-y-6">
-                    {filteredMbaProjects.map((project) => (
-                      <li key={project.name} className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                        <h4 className="text-xl font-semibold mb-2 text-purple-400">{project.name}</h4>
-                        <p className="text-gray-300 mb-3">{project.description}</p>
-                        <p className="text-gray-300 mb-3"><i>Role: {project.role}</i></p>
-                        <a href={project.link} className="inline-block bg-cyan-600 text-white py-2 px-4 rounded hover:bg-cyan-700 transition-colors duration-300" target="_blank" rel="noopener noreferrer">Visit Project</a>
-                        <div className="mt-2">
-                          {project.tags.map((tag) => (
-                            <span key={tag} className="inline-block bg-gray-700 text-cyan-300 text-sm px-2 py-1 rounded mr-2">{tag}</span>
-                          ))}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              </div>
+             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+               <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {filteredMbaProjects.map((project) => (
+                  <li key={project.name} className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl">
+                    <h4 className="font-bold text-white mb-2">{project.name}</h4>
+                    <p className="text-xs text-slate-400 mb-4 italic">MBA Concentration: Data Analytics</p>
+                    <p className="text-sm text-slate-300 mb-4 leading-relaxed">{project.description}</p>
+                    <div className="flex gap-4">
+                      <a href={project.link} className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest border-b border-cyan-400/30 pb-1">View Repository</a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
       </main>
-      <footer className="text-white py-4 mt-20">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Jacob Pelletier. All rights reserved.</p>
-          <div className="mt-2">
-            <a href="#" className="text-cyan-300 hover:text-cyan-400 mx-2">LinkedIn</a>
-            <a href="#" className="text-cyan-300 hover:text-cyan-400 mx-2">GitHub</a>
+
+      <footer className="border-t border-slate-900 py-12 mt-20">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col md:row justify-between items-center gap-6">
+          <p className="text-xs text-slate-600 font-mono">
+            &copy; 2026 Jacob John Pelletier // BSN, BSCS, MBA Candidate
+          </p>
+          <div className="flex gap-6">
+            <a href="#" className="text-xs uppercase tracking-widest text-slate-400 hover:text-cyan-400 transition-colors">LinkedIn</a>
+            <a href="#" className="text-xs uppercase tracking-widest text-slate-400 hover:text-cyan-400 transition-colors">GitHub</a>
           </div>
         </div>
       </footer>
 
-      <Modal isOpen={isBlogModalOpen} onClose={() => setIsBlogModalOpen(false)}>
-        <h2 className="text-2xl font-bold mb-4 text-cyan-300">Coming Soon</h2>
-        <p className="text-white">The blog feature is currently under development.</p>
-      </Modal>
-
+      {/* Modal remains largely same with updated styling */}
       <Modal isOpen={isConstructionModalOpen} onClose={() => setIsConstructionModalOpen(false)}>
-        <h2 className="text-2xl font-bold mb-4 text-cyan-300">Under Construction</h2>
-        <p className="text-white">
-          Welcome! This site is currently under construction.
-        </p>
+        <div className="text-center">
+          <div className="inline-block p-3 rounded-full bg-cyan-500/10 mb-4">
+            <svg className="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+          </div>
+          <h2 className="text-xl font-bold text-white mb-2">Systems Deployment in Progress</h2>
+          <p className="text-sm text-slate-400 mb-6">
+            Portfolio logic is currently being optimized for 2026.
+          </p>
+        </div>
       </Modal>
     </div>
   );
@@ -431,16 +317,15 @@ export default function Home() {
 
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-6">
+      <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full">
         {children}
         <button
           onClick={onClose}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors w-full"
+          className="w-full py-3 rounded-xl bg-cyan-600 text-white font-bold text-xs uppercase tracking-widest hover:bg-cyan-500 transition-colors"
         >
-          Close
+          Enter Environment
         </button>
       </div>
     </div>
